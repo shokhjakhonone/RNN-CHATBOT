@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat-KONI</title>
+    <style>
+       h1 {
+            
+            color: rgb(238, 231, 231);
+            text-align: center; /* Выравнивание заголовка по центру */
+            background-color: rgba(39, 39, 39, 0.651);
+            border-radius: 6px;
+            padding: 0.5em;
+            margin-bottom: 0.5px;
+            font-family: Arial, sans-serif;
+        }
+        p { color: rgb(231, 222, 222);}
+        li { color: rgb(231, 222, 222);}
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-image: url("https://venturebeat.com/wp-content/uploads/2021/10/shutterstock_1703415496-1.jpg?w=1200&strip=all");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .video-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .video-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+        }
+        .chatbox {
+            
+      
+            background-color: rgba(32, 32, 32, 0.822);
+            border-radius: 6px;
+            padding: 1em;
+            margin-bottom: 1px;
+            overflow-y: auto; /* Добавлено свойство overflow-y */
+            max-height: 400px; /* Добавлено свойство max-height */
+            font-family: Arial, sans-serif;
+        }
+        .message-container {
+            margin-bottom: 10px;
+        }
+        .user-message {
+            background-color: #d6d4d4;
+            padding: 10px;
+            border-radius: 5px;
+            margin-right: 20px;
+            text-align: right;
+
+        }
+        .bot-message {
+            background-color: #e5e5e5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-left: 20px;
+            word-wrap: break-word;
+        }
+        .input-container {
+            display: flex;
+            
+        }
+        .input-text {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #d3d2d29a;
+        }
+        .submit-button {
+            --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
+  --border-width: .125em;
+  --curve-size: .5em;
+  --blur: 30px;
+  --bg: #080312;
+  --color: #afffff;
+  color: var(--color);
+    /* use position: relative; so that BG is only for .btn */
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  place-content: center;
+  padding: 10px;
+  font-size: 8px;
+  border: 0;
+  text-transform: uppercase;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
+  clip-path: polygon(
+            /* Top-left */
+            0% var(--curve-size),
+
+            var(--curve-size) 0,
+            /* top-right */
+            100% 0,
+            100% calc(100% - var(--curve-size)),
+
+            /* bottom-right 1 */
+            calc(100% - var(--curve-size)) 100%,
+            /* bottom-right 2 */
+            0 100%);
+  transition: color 250ms;
+}
+
+.submit-button :after,
+.submit-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.submit-button::before {
+  background: var(--border-color);
+  background-size: 300% 300%;
+  animation: move-bg7234 5s ease infinite;
+  z-index: -2;
+}
+
+@keyframes move-bg7234 {
+  0% {
+    background-position: 31% 0%
+  }
+
+  50% {
+    background-position: 70% 100%
+  }
+
+  100% {
+    background-position: 31% 0%
+  }
+}
+
+.submit-button::after {
+  background: var(--bg);
+  z-index: -1;
+  clip-path: polygon(
+            /* Top-left */
+            var(--border-width) 
+            calc(var(--curve-size) + var(--border-width) * .5),
+
+            calc(var(--curve-size) + var(--border-width) * .5) var(--border-width),
+
+            /* top-right */
+            calc(100% - var(--border-width)) 
+            var(--border-width),
+
+            calc(100% - var(--border-width)) 
+            calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+
+            /* bottom-right 1 */
+            calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) calc(100% - var(--border-width)),
+            /* bottom-right 2 */
+            var(--border-width) calc(100% - var(--border-width)));
+  transition: clip-path 500ms;
+}
+
+.submit-button:where(:hover, :focus)::after {
+  clip-path: polygon(
+                /* Top-left */
+                calc(100% - var(--border-width)) 
+
+                calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    
+                calc(100% - var(--border-width))
+
+                var(--border-width),
+    
+                /* top-right */
+                calc(100% - var(--border-width))
+
+                 var(--border-width),
+    
+                calc(100% - var(--border-width)) 
+
+                calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+    
+                /* bottom-right 1 */
+                calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) 
+                calc(100% - var(--border-width)),
+
+                /* bottom-right 2 */
+                calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+                calc(100% - var(--border-width)));
+  transition: 200ms;
+}
+
+.submit-button:where(:hover, :focus) {
+  color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chat-KONI</h1>
+        <div class="video-wrapper">
+            <div class="video-circle">
+                <img src="https://i.ibb.co/KySLt13/Untitled-video.gif" width="100%" height="100%">
+            </div>
+        </div>
+        
+        <div class="chatbox">
+            <div class="rules">
+                <p>Можете спросить у Chat-KONI</p>
+                <ul>
+                    <p> Пример вопросы:</p>
+                    <li>Какие неотделимые улучшения земельного участка не подлежат компенсации при его изъятии?</li>
+                    <li>Кто является создателем chat koni?</li>
+                    <li>Что такое административное право?</li>
+                    <p>Бот предоставляет информацию на основе доступных данных и не является юридическим консультантом. Проверьте полученную информацию у специалистов перед принятием решений.</p>
+                </ul>
+            </div>
+            <div class="message-history-container">
+                <div id="message-history">
+                    <!-- Содержимое истории сообщений будет добавлено динамически с помощью JavaScript -->
+                </div>
+            </div>
+            <form id="chat-form" method="post" action="/get_response">
+                <div class="input-container">
+                    <input class="input-text" type="text" name="user_input" placeholder="Введите сообщение" required>
+                    <button class="submit-button" type="submit">Отправить</button>
+                </div>
+                <div class="px-3 pb-3 pt-2 text-center text-xs text-gray-600 dark:text-red-300 md:px-4 md:pb-6 md:pt-3">
+                    <span class="text-color">Пожалуйста, свяжитесь с нами, если модель отвечает неправильно. support  
+                        <a href="https://uzlegalai-startup.bubbleapps.io/version-test" target="_blank" rel="noreferrer" class="underline red-text">Chat-KONI</a>
+                    </span>
+                </div>
+                
+                <style>
+                    .red-text {
+                        color: rgba(151, 69, 245, 0.897);
+                    }
+                    .text-color {
+                        color: rgba(255, 255, 255, 0.952);
+                    }
+                </style>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var messageHistory = document.getElementById("message-history");
+
+function scrollToBottom() {
+    messageHistory.scrollTop = messageHistory.scrollHeight;
+}
+
+scrollToBottom();
+
+var form = document.getElementById("chat-form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var inputText = document.getElementsByName("user_input")[0].value;
+
+    var messageContainer = document.createElement("div");
+    messageContainer.classList.add("message-container");
+
+    var userMessage = document.createElement("div");
+    userMessage.classList.add("user-message");
+    userMessage.textContent = inputText;
+
+    messageContainer.appendChild(userMessage);
+    messageHistory.appendChild(messageContainer);
+
+    scrollToBottom();
+
+    fetch("/get_response", {
+        method: "POST",
+        body: new URLSearchParams(new FormData(form))
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        var botMessage = document.createElement("div");
+        botMessage.classList.add("bot-message");
+
+        messageContainer.appendChild(botMessage);
+        messageHistory.appendChild(messageContainer);
+
+        scrollToBottom();
+
+        var chars = data.response.split("");
+        var index = 0;
+
+        function appendChar() {
+            if (index < chars.length) {
+                botMessage.textContent += chars[index];
+                index++;
+                scrollToBottom();
+                setTimeout(appendChar, 30); // Задержка в миллисекундах между буквами
+            }
+        }
+
+        appendChar();
+    });
+
+    form.reset();
+});
+    </script>
+</body>
+</html>

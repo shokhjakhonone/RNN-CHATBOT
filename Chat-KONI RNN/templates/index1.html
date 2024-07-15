@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat-KONI</title>
+  <style>
+    body {
+     margin: 0;
+      font-family: sans-serif;
+      background-color: #DDD;
+      
+      background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F000%2F575%2F893%2Foriginal%2Fwhite-and-gray-color-polygon-abstract-background-technology-modern-vector-illustration.jpg&f=1&nofb=1&ipt=c9c21b464c0a9a598f06fe4b055e38a736bbaaf292e348e7600055932218df7e&ipo=images");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+     
+    }
+    
+   
+     
+    .container {
+      max-width: 700px;
+      margin: auto;
+      height: 45vh;
+      background-color: rgba(0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: rgb(238, 231, 231);
+            text-align: center; /* Выравнивание заголовка по центру */
+            background-color: rgba(39, 39, 39, 0.651);
+            border-radius: 15px;
+            padding: 0.9em;
+            margin-bottom: 0.10px;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            
+             
+     
+    }
+
+    .video-wrapper {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid black;
+      
+    }
+
+    .video-circle img {
+      width: 180px;
+      height: 180px;
+      border-radius: 200%;
+      overflow: hidden;
+      position: relative;
+      border: 6px solid black;
+      
+    }
+
+    main {
+      max-width: 700px;
+      margin: auto;
+      height: 100vh;
+      background-color: #DDD;
+      display: flex;
+      flex-direction: column;
+      max-height: 500px;
+       border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-box-container {
+      margin: 1;
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      height: 20vh;
+      max-height: 500px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      
+    }
+
+    .chat-box-header {
+      text-align: center;
+    }
+
+    .chat-box {
+      margin: 4px;
+      border: 2px solid black;
+      flex-grow: 1;
+      background: rgba(255, 255, 255, 0.0);
+      overflow-y: scroll;
+      padding: 6px;
+      border-radius: 20px;
+     max-height: 500px; /* Добавлено свойство max-height */
+    }
+
+    .chat-box p {
+      margin: 0;
+      padding: 6px;
+      font-size: 20px;
+    
+    }
+
+    .chat-input-container {
+      position: relative;
+      height: 60px;
+      width: 100%;
+      display: flex;
+      bottom: 0;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+       background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .chat-input {
+      height: 40px;
+      width: auto;
+      display: inline-block;
+      flex-grow: 1;
+      padding: 2px 2px 2px 2px;
+      margin: 0 4px 0 4px;
+      font-size: 15px;
+      border: 2px solid black;
+       background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .chat-submit {
+      width: 70px;
+      height: 47px !important;
+      padding: 2px 2px 2px 2px;
+      margin-right: 4px;
+      border: 2px solid black;
+      background-color: #04AA6D;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+
+    .chat-submit:hover {
+      cursor: pointer;
+      background-color: #f44336;
+      border-radius: 10px;
+    }
+
+    .chat-submit:focus {
+      outline: 0;
+   .tooltip-widget {
+  position: absolute;
+  display: none;
+  background-color: #008CBA;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.tooltip-content {
+  max-width: 200px;
+}
+
+.element {
+  cursor: pointer;
+}
+}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Chat-KONI</h1>
+    
+    <div class="video-wrapper">
+      <div class="video-circle">
+        <img src="https://i.ibb.co/KySLt13/Untitled-video.gif" alt="video" width="100%" height="100%">
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="chat-box-container">
+    
+      <div class="chat-box" id="chat-box"></div>
+    </div>
+    <div class="chat-input-container">
+      <input class="chat-input" type="text" id="chat-input" placeholder="Type a message">
+      <button class="chat-submit" id="chat-submit">Submit</button>
+    </div>
+    <div>
+     <span class="text-color" style="display: block; margin: 0 auto; max-width: max-content;">
+Наша модель в настоящее время находится в пилотном режиме, и возможны ситуации, ответы могут быть неправильными или неточными. -> 
+    <a href="https://taplink.cc/uzlegal.ai" target="blank" rel="noreferrer" class="underline red-text">Chat-KONI</a>
+</span>
+    </div>
+
+    <style>
+      .red-text {
+        color: rgb(0, 0, 1);
+      }
+      .text-color {
+        color: rgb(0, 0, 0);
+      }
+    </style>
+  </main>
+
+  <script>
+    (function() {
+      "use strict";
+
+      const chatBox = document.querySelector("#chat-box");
+      const chatInput = document.querySelector("#chat-input");
+      const chatSubmit = document.querySelector("#chat-submit");
+
+      chatSubmit.addEventListener("click", sendMessage);
+      chatInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
+      });
+
+      function sendMessage() {
+        const userMessage = chatInput.value.trim();
+        if (userMessage) {
+          appendChat("You", userMessage, false);
+          chatInput.value = "";
+          sendToServer(userMessage);
+        }
+      }
+
+      function appendChat(sender, message, realTimeTyping = true) {
+        const chatMessage = document.createElement("p");
+        chatMessage.innerHTML = `<strong>${sender}:</strong> `;
+        chatBox.appendChild(chatMessage);
+
+        if (realTimeTyping) {
+          let words = message.split(' ');
+          let index = 0;
+          const interval = setInterval(function() {
+            if (index < words.length) {
+              chatMessage.innerHTML += words[index] + ' ';
+              index++;
+            } else {
+              clearInterval(interval);
+              chatBox.scrollTop = chatBox.scrollHeight;
+            }
+          }, 50);
+        } else {
+          chatMessage.innerHTML += message;
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }
+      }
+
+      function sendToServer(userMessage) {
+        fetch('/get_response', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: 'user_input=' + userMessage
+        })
+        .then(response => response.json())
+        .then(data => {
+          const aiResponse = data.response;
+          appendChat("AI", aiResponse, true);
+        })
+        .catch(error => {
+          console.error('Ошибка при отправке запроса:', error);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
